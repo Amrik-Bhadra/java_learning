@@ -1,0 +1,106 @@
+CPU:
+-> brain of computer
+-> responsible for executing instructions
+
+CORE:
+-> individual processing unit within CPU
+-> 1 core performs one task at a time
+
+types:
+quad core : 4 cores
+
+Process:-
+-> instance fo program that is being executed
+-> when prof runs the os creates a process to manage its execution
+
+
+Thread:
+-> smallest unit of execution within a process.
+-> a process can have multiple threads, which sahre same resources but can run independently
+
+example:
+web browser, multiple tabs, each tab running at same time, on separate thread
+
+
+
+Multitasking:-
+-> allows an os to run multiple processes simultaneously
+-> on single-core CPUs, this is done through time-sharing, rapidly switching between tasks
+-> on multi-core CPUs, true parallel execution occurs, with tasks distributed across cors
+-> the os scheduler balances the load, ensuring efficient and responsive system performance
+
+
+Multithreading:-
+-> refers to ability to execute multiple threads within a single process concurrently
+-> enhances the efficiency of multitasking by breaking down individual tasks into smaller sub-tasks or threads
+-> these threads can be processed simultaneously, making better use of the CPU's capability
+
+Single-Core System:
+Both threads and processes managed by OS scheduler through time slicing and context switching to create illusion of simultaneous execution
+
+Multi-core system:
+Both threads and processes can run in true parallel on different cores, with the OS scheduler distributing tasks across the cores to optimize performance
+
+
+
+Time Slicing:-
+-> time slicing divides CPU time into smaller intervals called time slice or quanta
+-> function: os scheduler allocates these time slice to different process and threads, ensuring each gets a fair share of CPU time.
+-> purpose: This prevents any single process or thread from monopolizing the CPU, improving responsiveness and enabling concurrent execution.
+
+
+Context Switching:-
+-> Definition: Context switching is the process of saving the state of a currently running process or thread and loading the state of the next one to be executed
+-> Function: When a process or thread's time slice expires, the OS scheduler performs a context switch to move the CPU focus to another process or thread
+-> Purpose: This allows multiple processes and threads to share the CPU, giving the appearance of simultaneous execution on a single-core CPU or improving parallelism on multi-core CPUs
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-> Java provides robust support for multithreading, allowing developers to create applications that can perform multiple tasks simultaneously, improving performance and responsiveness
+-> In Java, multithreading is the concurrent execution of two or more threads to maximize the utilization of the CPU. Java's multithreading capabilities are part of the java.lang package, making it easy to implement concurrent execution.
+
+-> In a single core env, java's multi-Th is managed by JVM and the OS, which switch between threads to give illusion of concurrency
+-> the threads share the single core, and
+-> time-slicing is used to manage thread execution
+
+-> in multi-core env, java's multi-Th can take full adv. of the available cores
+-> the jvm can distribute threads across multiple cores, allowing true parallel exec. of threads
+
+
+-> when a java program starts, one thread begins running immediately, called the main  thread.
+-> this thread is responsible for executing the main method of the program
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Create Threads:-
+-> to create a new thread in java, thre are two ways:
+
+1. Extend thread class
+    -> our custom class created, which extends Thread class
+    -> the run method overridden to define the code that constitutes the new thread
+    -> start method is called to initiate the new thread
+
+2. Implement the runnable interface
+    -> our custom class created, which implements Runnable interface
+    -> the run method is overridden to define the code that constitutes the new thread
+    -> a thread object is created by passing an instance of our custom class that implemented Runnable interface
+    -> start method is called on Thread object to initiate the new thread
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+Thread Lifecycle:-
+1. New: A thread is in this state when it is created but not yet started
+2. Runnable: After the start method is called, the thread becomes runnable. it is ready to run and is waiting for CPU time
+4. Running: The thread is in this state when its executing
+5. Blocked/Waiting: a thread is in this state when it is waiting for a resource or for another thread to perform an action
+6. Terminated: a thread is in this state when it has finished executing
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+Thread Methods:-
+1. start()
+2. run()
+3. sleep()
+4. join()
+5. setPriority(Thread.MIN_PRIORITY) etc

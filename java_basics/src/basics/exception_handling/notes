@@ -1,0 +1,133 @@
+Types of error:
+1. Syntax error   (compile nhi hoga)
+2. Logical error  (compile hoke run hoga but epected se alag kch hoga)
+3. Runtime error  (compile hoga but run krte vkt error aega)
+
+
+Exceptions:-
+-> is an event that disrupts normal flow of the program
+-> it is an object which is thrown at runtime
+
+
+ArithmeticException extends RuntimeException
+RuntimeException extends Exception
+Exception extends Throwable
+
+Throwable class has toString() method:-
+public String toString(){
+    String s = getClass().getName();
+    String message getLocalizedMessage();
+    return (message != null) ? (s + " " + message) : s
+}
+
+therefore, when we do sout(e), message prints in string
+---------------------------------------------------------------
+
+Hirarchy:-
+java.lang.Object
+    -> java.lang.Throwable
+        -> java.lang.Error
+            -> java.lang.VirtualMachineError
+                -> java.lang.OutOfMemoryError
+                -> java.lang.StackOverflowError
+            -> java.lang.LinkageError
+                -> java.lang.ClassFormatError
+                -> java.lang.NoClassDefFoundError
+
+        -> java.lang.Exception
+            -> java.lang.RuntimeException
+                -> java.lang.ArithmeticException
+                -> java.lang.NullPointerException
+                -> java.lang.IndexOutOfBoundException
+                -> java.lang.IllegalArgumentException
+
+            -> java.io.IOException
+                -> java.io.FileNotFoundException
+                -> java.io.EOFException
+
+            -> java.sql.SQLException
+            -> java.lang.reflect.InvocationTargetException
+            -> java.net.SocketException
+            -> java.net.UnknownHostException
+
+-------------------------------------------------------------------------------
+Checked Exception:
+    -> checked during compile-time
+    -> FileNotFoundException
+
+Unchecked Exception:
+    -> not checked by compiler, occur at runtime
+    -> ArithmeticException, NullPointerException, ArrayIndexOutOfBoundException
+-------------------------------------------------------------------------------
+1.  e.printStackTrace(): gives callstack snapshot, to show detail of exception
+    StackTraceElement[] stackTrace = e.getStackTrace();
+    for(int i=0; i<stackTrace.length; i++){
+        System.out.println(stackTrace[i]);
+    }
+
+2.
+-------------------------------------------------------------------------------
+1. try-catch
+
+try{
+    //code
+}catch(ExceptionClassName exception_object){
+    //code
+}
+
+example:
+int[] numerator = {12, 40, 20, 46};
+int[] denominator = {3, 4, 0, 2};
+
+try{
+    for(int i=0; i<numerator.length; i++){
+        System.out.print(numerator[i]/denominator[i] + " ");
+    }
+}catch(ArithmeticException e){
+    System.out.print("Cannot divide by 0");
+}
+
+
+2. try - multi catch
+
+try{
+    //code
+}catch(ExceptionClassName exception_object){
+    //code
+}catch(ExceptionClassName exception_object){
+    //code
+}catch(ExceptionClassName exception_object){
+    //code
+}
+
+OR
+
+try{
+    //code
+}catch(ExceptionClassName1 exception_object1 | ExceptionClassName2 exception_object2 | ...){
+    //code
+}
+
+
+3. throws: use in the signature of method which can throw exception
+4. throw: when you explicitly throw some exception
+    example: throw new FileNotFoundException();
+
+5. try-with-resources:
+    -> objects of resources need to be close
+    -> creating those inside try(), will automatically close them
+
+    try(BufferedReader reader = new BufferedReader(new FileReader("example.txt")){
+        String line;
+        while(line = reader.readLine() != null){
+            System.out.println(line);
+        }
+    } catch(IOException e){
+        System.out.println("IOException: " + e.getMessage());
+    }
+
+
+ --------------------------------------------------------------------------------------------------
+
+ Custom Exception Class:-
+

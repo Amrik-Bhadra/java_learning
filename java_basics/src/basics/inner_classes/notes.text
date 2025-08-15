@@ -1,0 +1,19 @@
+Inner Class Types:
+1. Member Inner Class / Nested Inner Class
+2. Static Nested Class
+3. Local Inner Class
+4. Anonymous Inner Class
+---------------------------------------------------------------------------------------------------------
+
+Nested Inner Class:-
+-> inner class can access private members of outer class
+-> we can also have interface inside the outer class
+-> we cannot have a static method in a nested inner class
+    -> inner class if implicitly associated with object of outer class
+    -> so it cannot have a static method of itself
+
+
+Anonymous Inner Class:
+-> one-time use k liye object create krna h (implenting class create krna h)
+-> when you want to implement an interface without creating separate implementing class
+-> when you want to extend a class without creating a separate sub class

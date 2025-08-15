@@ -1,0 +1,156 @@
+class -> blueprint, containing properties (attributes) & behaviour (methods) of an object
+object -> any real world entity
+
+4 pillars:
+    -> encapsulation: binding properties and behaviours, in single unit (class); allows data hiding, using access modifiers
+                       users will not be able to access properties directly.
+                       create getters/setters
+
+    -> Abstraction:
+    -> inheritance
+    -> polymorphism
+
+
+
+Method overloading: same function name but different signature
+                    Signature -> function_name + parameters
+                              -> example: sum(int a, int b)
+                                          sum(float a, int b)
+                               -> signature does not mean return type/access modifiers
+
+
+Pass By Value: when we pass, primitive data to methods, then a copy of that variable is passed
+                any changes made does not affect actual value
+
+Pass By Reference: When we pass String, array, objects, its reference is passed
+                    so any changes made affects the actual value
+
+Note: Strings are immutable, so even if we pass it as reference, original is not changed
+----------------------------------------------------------------------------------------------------------------
+# variable number of arguments passed:
+
+public int sum(int ...a){
+    int sum = 0;
+    for(int ele: a){
+        sum += a;
+    }
+
+    return sum;
+}
+
+ob.sum(1, 2, 3);
+ob.sum(1, 2);
+
+Note:
+-> variable size parameter is an array
+-> if multiple data types are send, then variable size parameter should always be at end
+
+public static void greet(String name, int ...people){
+    System.out.println(String.format("%s, says hello to %d people", name, people.length));
+}
+----------------------------------------------------------------------------------------------------------
+
+Constructor:
+
+-> special method, having same name as classname
+-> called when we create object
+-> to initialise instance variables
+
+Type:
+    -> default constructor
+    -> parameterised constructor
+    -> copy constructor
+
+ -----------------------------------------------------------
+
+ Inheritance:
+
+ this keyword -> currently calling object
+ super keyword -> parent
+
+ ----------------------------------------------------------------
+
+ Polymorphism: (Poly -> many + morphism -> forms)
+
+ compile-time: -> method overloading
+ run-time:  -> method overriding
+            -> dynamic method dispatch
+
+
+ // upcasting
+ Parent ob = new Child()
+
+ // down casting
+ Child ob = new Parent() // wrong ❌ 
+ Child ob2 = ob;  // wrong ❌
+
+ Child ob2 = (Child) ob;  // correct ✅
+
+ ⭐⭐⭐ [Note: in method overriding we can change the access modifiers of the method to increase visibility
+                protected -> public ✅
+                protected -> private ❌
+
+ -------------------------------------------------------------------------------------------------------
+
+ Static Keyword:
+ -> primarily used for memory management
+ -> can be used with variables, methods, blocks and nested classes
+ -> main concept is, it belongs to class; not to instance of class (object)
+ -> accessed using Class reference
+ -> common property of all instance of the class
+ -> used for utility class, for helper functions
+
+ ⭐⭐⭐ [ Note: static methods cannot use non-static data members or call non-static method directly ]
+ ⭐⭐⭐ [ Note: this and super cannot be used in static context ]
+ ⭐⭐⭐ [ Note: static variables gets initialised even before instance of classes created/or even if you
+            don't create instance ]
+
+ if static applied to a method: we can call it without creating object
+ ClassName.methodName();
+
+ // static block: runs when class loads;
+                  used to initialise static variables using some logic (static initialisation, one time)
+ static {
+    System.out.println("Hello World");
+ }
+
+
+ ⭐⭐⭐ [
+            Note: Can you override a private or static method in Java? Why or why not?
+            Expected: No. Private methods are not visible to subclasses.
+                      Static methods are class-level, not instance-level (method hiding, not overriding).
+         ]
+
+--------------------------------------------------------------------------------------------------------------
+
+Singleton Class:-
+-> A singleton class in Java is a design pattern that ensures a class has only one instance and
+   provides a global point of access to that instance.
+
+-> This pattern is often used for resources that should be shared and managed centrally,
+   such as database connections, loggers, or configuration managers.
+
+--------------------------------------------------------------------------------------------------------------
+final Keyword:-
+-> can be used on variables (constant), methods (cannot override), class (cannot extend)
+--------------------------------------------------------------------------------------------------------------
+Interface:
+-> blueprint to create class
+-> contains: abstract class(by default, no need to mention "abstract") and static constant variables
+-> use-case: multiple inheritance, abstraction
+-> methods cannot have a body ( all methods must be abstract )
+-> but if we make a method static, then it can have body
+
+static method in interface:
+-> can have body
+-> can be accessed by interface only
+-> objects of implementing class cannot access it
+-> as its not inherited in implementing class
+
+default method in interface:
+-> can have body
+-> can be accessed by objects of implementing class
+-> cannot be accessed by interface
+-> if you want any method from interface directly go to implementing class, without breaking anything, without overriding it
+
+⭐⭐⭐ [ Note: we can have main method inside the interface as well ]
