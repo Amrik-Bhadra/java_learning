@@ -159,13 +159,13 @@ resizable array implementation of List interface
         students.add(new Student("Bravo", 8.67f ));
         students.add(new Student("Delta", 9.21f ));
 
-        <!-- method 1: -->
-        <!-- students.sort((s1, s2) -> (s2.getCgpa() - s1.getCgpa() > 0) ? 1 : -1); -->
+        //method 1:
+        // students.sort((s1, s2) -> (s2.getCgpa() - s1.getCgpa() > 0) ? 1 : -1);
 
-        <!-- method 2: -->
+        // method 2:
         Comparator<Student> comparator = Comparator.comparing(Student::getCgpa).reversed();
 
-        <!-- first compare based on cgpa, if both same, then compare based on names -->
+        // first compare based on cgpa, if both same, then compare based on names
         Comparator<Student> comparator = Comparator.comparing(Student::getCgpa)
                                                    .reversed()
                                                    .thenComparing(Student::getName);
@@ -173,3 +173,56 @@ resizable array implementation of List interface
       }
     }
    ```
+
+---
+
+# Linked List
+- another implementation class of List
+- elements in linkedlist are store in nodes, each node has value and address (address of next node)
+- elements are not in contigous memory location
+
+## Types of LinkedList
+1. Singly Linkedlist
+2. Doubly Linkedlist
+3. Circular Linkedlist
+
+### Note:
+  - in LinkedList in Collection Framework, uses a `dynamic array` to store elements in `doubly linkedlist`
+
+## Performance Considerations
+  - **Insertions & Deletions** in middle is better as it doesnot require shifting of elements
+  - **Random Access** is slow as compared to ArrayList as it has to traverse the list from beginning to reach the desired index
+  - **Memory Overhead:** LinkedList requires more memory than ArrayList because each node in a linkedlist requires extra memory to store references to the next and previous node
+
+## Create Linkedlist
+  ``` LinkedList<Integer> linkedList = new LinkedList<>(); ```
+  OR
+  ``` List<Integer> linkedList = new LinkedList<>(); ```
+
+## Linkedlist methods
+1. list.add(element)
+2. list.addLast(element)   --> O(1)
+3. list.addFirst(element)  --> O(1)
+4. list.get(index)
+5. list.getFirst()
+6. list.getLast()
+7. list.remove(index)
+8. list.removeFirst();
+9. list.removeLast();
+10. list.removeFirstOccurrence(element);
+11. list.removeLastOccurrence(element);
+12. list.removeAll(collection);
+13. list.removeIf(lambda_expression);
+14. list.set(index, newValue);
+
+example:
+```
+  LinkedList<String> animals = new LinkedList<>(Arrays.asList("Cat", "Dog", "Cheetah", "Lion", "Jackals"));
+  List<String> removeAnimals = Arrays.asList("Dog", "Lion");
+  animals.removeAll(removeAnimals);
+  System.out.println(animals);
+```
+
+### Note:
+- We can use List as reference also `List<Integer> linkedList = new LinkedList<>();`
+- but then we cannot use: addFirst(), addLast(), removeFirst(), removeLast()
