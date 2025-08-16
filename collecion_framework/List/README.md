@@ -109,3 +109,67 @@ resizable array implementation of List interface
 - iteration --> O(n)
     
 ---
+# Comparator
+
+- compare two items
+- there is a **Comparable** interface which has a `int compare(T o1, T o2)` method
+- when this comparator is passed to .sort() with a list, then using the logic of comparasion, list elemnts are arranged in particular order
+
+## Three ways of creating comparator and passing in sort()
+1. Creating our comparator class and implementing Comparable<T>
+   ```
+    class NumberComparator implements Comparator<Integer> {
+        @Override
+        public int compare(Integer a, Integer b){
+            return b - a; // for descending order
+            // return a - b;  // for ascending order
+        }
+    }
+
+    public class Main {
+      public static void main(String[] args){
+        List<Integer> list = Arrays.asList(32, 12, 45, 21);
+        list.sort(new NumberComparator());
+        System.out.println(list);
+      }
+    }
+   ```
+
+2. Using Lambda functions
+
+   ```
+    public class Main {
+      public static void main(String[] args){
+        List<Integer> list = Arrays.asList(32, 12, 45, 21);
+        list.sort((a, b) -> a - b);
+        System.out.println(list);
+      }
+    }
+   ```
+
+3. Using Comparator
+
+   ```
+    public class Main {
+      public static void main(String[] args){
+        List<Student> students = new ArrayList<>();
+        students.add(new Student("Charlie", 9.67f ));
+        students.add(new Student("Lambda", 9.21f ));
+        students.add(new Student("Alpha", 9.68f ));
+        students.add(new Student("Bravo", 8.67f ));
+        students.add(new Student("Delta", 9.21f ));
+
+        <!-- method 1: -->
+        <!-- students.sort((s1, s2) -> (s2.getCgpa() - s1.getCgpa() > 0) ? 1 : -1); -->
+
+        <!-- method 2: -->
+        Comparator<Student> comparator = Comparator.comparing(Student::getCgpa).reversed();
+
+        <!-- first compare based on cgpa, if both same, then compare based on names -->
+        Comparator<Student> comparator = Comparator.comparing(Student::getCgpa)
+                                                   .reversed()
+                                                   .thenComparing(Student::getName);
+        students.sort(comparator);
+      }
+    }
+   ```
