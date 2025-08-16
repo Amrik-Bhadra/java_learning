@@ -1,3 +1,5 @@
+<img width="1919" height="1079" alt="collections_mind_map" src="https://github.com/user-attachments/assets/5015795b-1994-48d2-a4e8-0cc75b434002" />
+
 # List Interface
 - it is part of **java.util** package
 - List interface extends **Collection** interface
